@@ -33,7 +33,7 @@ const FONTS = [
 ];
 
 // needs revision
-export const THEMES = [
+const THEMES = [
   {
     text: {
       type: "plain_text",
@@ -240,7 +240,7 @@ export const THEMES = [
 ];
 
 // needs refactoring
-export const LANGUAGES = [
+const LANGUAGES = [
   {
     name: "Auto",
     mode: "auto",
@@ -543,4 +543,4 @@ export const LANGUAGES = [
   },
 ];
 
-module.exports = { FONTS, THEMES };
+module.exports = { FONTS, THEMES, LANGUAGES };

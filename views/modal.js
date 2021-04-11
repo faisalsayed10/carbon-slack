@@ -11,6 +11,16 @@ const Modal = {
     text: "Carbon",
     emoji: true,
   },
+		submit: {
+		type: "plain_text",
+		text: "Submit",
+		emoji: true
+	},
+	close: {
+		type: "plain_text",
+		text: "Cancel",
+		emoji: true
+	},
   blocks: [
     code,
     color,

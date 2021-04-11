@@ -1,6 +1,6 @@
 const code = {
   type: "input",
-  block_id: "input_1",
+  block_id: "code_input",
   label: {
     type: "plain_text",
     text: "Enter your code:",

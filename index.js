@@ -1,6 +1,6 @@
 require("dotenv").config();
 const { App } = require("@slack/bolt");
-const Modal = require("./views/createImage");
+const Modal = require("./views/modal");
 
 const app = new App({
   token: process.env.SLACK_BOT_TOKEN,
@@ -12,7 +12,7 @@ app.command("/carbon", async ({ ack, body, client }) => {
   try {
     const result = await client.views.open({
       trigger_id: body.trigger_id,
-      view: createImage,
+      view: Modal,
     });
     console.log(result);
   } catch (error) {
