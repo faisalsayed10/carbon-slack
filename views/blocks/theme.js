@@ -2,6 +2,7 @@ const { THEMES } = require("../../constants");
 
 const theme = {
   type: "section",
+  block_id: "theme_input",
   text: {
     type: "mrkdwn",
     text: "Theme:",

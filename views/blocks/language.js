@@ -1,5 +1,8 @@
+const { LANGUAGES } = require("../../constants");
+
 const language = {
   type: "section",
+  block_id: "lang_input",
   text: {
     type: "mrkdwn",
     text: "Language:",
@@ -11,33 +14,8 @@ const language = {
       text: "Select an item",
       emoji: true,
     },
-    options: [
-      {
-        text: {
-          type: "plain_text",
-          text: "*this is plain_text text*",
-          emoji: true,
-        },
-        value: "value-0",
-      },
-      {
-        text: {
-          type: "plain_text",
-          text: "*this is plain_text text*",
-          emoji: true,
-        },
-        value: "value-1",
-      },
-      {
-        text: {
-          type: "plain_text",
-          text: "*this is plain_text text*",
-          emoji: true,
-        },
-        value: "value-2",
-      },
-    ],
-    action_id: "static_select-action",
+    options: LANGUAGES,
+    action_id: "language_select-action",
   },
 };
 

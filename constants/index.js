@@ -32,514 +32,615 @@ const FONTS = [
   { text: { type: "plain_text", text: "Ubuntu Mono" }, value: "Ubuntu Mono" },
 ];
 
-// needs revision
 const THEMES = [
   {
-    text: {
-      type: "plain_text",
-      text: "3024 Night",
-    },
-    value: "3024 Night",
+    text: { type: "plain_text", text: "3024 Night" },
+    value: "3024-night",
   },
   {
-    text: {
-      type: "plain_text",
-      text: "A11y Dark",
-    },
-    value: "A11y Dark",
+    text: { type: "plain_text", text: "A11y Dark" },
+    value: "a11y-dark",
   },
   {
-    text: {
-      type: "plain_text",
-      text: "Blackboard",
-    },
-    value: "Blackboard",
+    text: { type: "plain_text", text: "Blackboard" },
+    value: "blackboard",
   },
   {
-    text: {
-      type: "plain_text",
-      text: "Base 16 (Dark)",
-    },
-    value: "Base 16 (Dark)",
+    text: { type: "plain_text", text: "Base 16 (Dark)" },
+    value: "base16-dark",
   },
   {
-    text: {
-      type: "plain_text",
-      text: "Base 16 (Light)",
-    },
-    value: "Base 16 (Light)",
+    text: { type: "plain_text", text: "Base 16 (Light)" },
+    value: "base16-light",
   },
-  {
-    text: {
-      type: "plain_text",
-      text: "Cobalt",
-    },
-    value: "Cobalt",
-  },
-  {
-    text: {
-      type: "plain_text",
-      text: "Dracula",
-    },
-    value: "Dracula",
-  },
-  {
-    text: {
-      type: "plain_text",
-      text: "Duotone",
-    },
-    value: "Duotone",
-  },
-  {
-    text: {
-      type: "plain_text",
-      text: "Hopscotch",
-    },
-    value: "Hopscotch",
-  },
-  {
-    text: {
-      type: "plain_text",
-      text: "Lucario",
-    },
-    value: "Lucario",
-  },
-  {
-    text: {
-      type: "plain_text",
-      text: "Material",
-    },
-    value: "Material",
-  },
-  {
-    text: {
-      type: "plain_text",
-      text: "Monokai",
-    },
-    value: "Monokai",
-  },
-  {
-    text: {
-      type: "plain_text",
-      text: "Night Owl",
-    },
-    value: "Night Owl",
-  },
-  {
-    text: {
-      type: "plain_text",
-      text: "Nord",
-    },
-    value: "Nord",
-  },
-  {
-    text: {
-      type: "plain_text",
-      text: "Oceanic Next",
-    },
-    value: "Oceanic Next",
-  },
+  { text: { type: "plain_text", text: "Cobalt" }, value: "cobalt" },
+  { text: { type: "plain_text", text: "Dracula" }, value: "dracula" },
+  { text: { type: "plain_text", text: "Duotone" }, value: "duotone-dark" },
+  { text: { type: "plain_text", text: "Hopscotch" }, value: "hopscotch" },
+  { text: { type: "plain_text", text: "Lucario" }, value: "lucario" },
+  { text: { type: "plain_text", text: "Material" }, value: "material" },
+  { text: { type: "plain_text", text: "Monokai" }, value: "monokai" },
+  { text: { type: "plain_text", text: "Night Owl" }, value: "night-owl" },
+  { text: { type: "plain_text", text: "Nord" }, value: "nord" },
+  { text: { type: "plain_text", text: "Oceanic Next" }, value: "oceanic-next" },
   {
     text: {
       type: "plain_text",
       text: "One Light",
     },
-    value: "One Light",
+    value: "one-light",
   },
-  {
-    text: {
-      type: "plain_text",
-      text: "One Dark",
-    },
-    value: "One Dark",
-  },
-  {
-    text: {
-      type: "plain_text",
-      text: "Panda",
-    },
-    value: "Panda",
-  },
-  {
-    text: {
-      type: "plain_text",
-      text: "Paraiso",
-    },
-    value: "Paraiso",
-  },
-  {
-    text: {
-      type: "plain_text",
-      text: "Seti",
-    },
-    value: "Seti",
-  },
+  { text: { type: "plain_text", text: "One Dark" }, value: "one-dark" },
+  { text: { type: "plain_text", text: "Panda" }, value: "panda-syntax" },
+  { text: { type: "plain_text", text: "Paraiso" }, value: "paraiso-dark" },
+  { text: { type: "plain_text", text: "Seti" }, value: "seti" },
   {
     text: {
       type: "plain_text",
       text: "Shades of Purple ",
     },
-    value: "Shades of Purple ",
+    value: "shades-of-purple",
   },
   {
     text: {
       type: "plain_text",
       text: "Solarized (Dark)",
     },
-    value: "Solarized (Dark)",
+    value: "solarized dark",
   },
   {
     text: {
       type: "plain_text",
       text: "Solarized (Light)",
     },
-    value: "Solarized (Light)",
+    value: "solarized light",
   },
   {
     text: {
       type: "plain_text",
       text: "SynthWave '84",
     },
-    value: "SynthWave '84",
+    value: "synthwave-84",
   },
   {
     text: {
       type: "plain_text",
       text: "Twilight",
     },
-    value: "Twilight",
+    value: "twilight",
   },
-  {
-    text: {
-      type: "plain_text",
-      text: "Verminal",
-    },
-    value: "Verminal",
-  },
-  {
-    text: {
-      type: "plain_text",
-      text: "VSCode",
-    },
-    value: "VSCode",
-  },
-  {
-    text: {
-      type: "plain_text",
-      text: "Yeti",
-    },
-    value: "Yeti",
-  },
-  {
-    text: {
-      type: "plain_text",
-      text: "Zenburn",
-    },
-    value: "Zenburn",
-  },
+  { text: { type: "plain_text", text: "Verminal" }, value: "verminal" },
+  { text: { type: "plain_text", text: "VSCode" }, value: "vscode" },
+  { text: { type: "plain_text", text: "Yeti" }, value: "yeti" },
+  { text: { type: "plain_text", text: "Zenburn" }, value: "zenburn" },
 ];
 
 // needs refactoring
 const LANGUAGES = [
   {
-    name: "Auto",
-    mode: "auto",
+    text: {
+      type: "plain_text",
+      text: "Auto",
+    },
+    value: "auto",
   },
   {
-    name: "Apache",
-    mode: "apache",
+    text: {
+      type: "plain_text",
+      text: "Apache",
+    },
+    value: "apache",
   },
   {
-    name: "Bash",
-    mode: "shell",
+    text: {
+      type: "plain_text",
+      text: "Bash",
+    },
+    value: "shell",
   },
   {
-    name: "Plain Text",
-    mode: "text",
+    text: {
+      type: "plain_text",
+      text: "Plain Text",
+    },
+    value: "text",
   },
   {
-    name: "C",
-    mode: "clike",
+    text: {
+      type: "plain_text",
+      text: "C",
+    },
+    value: "c",
   },
   {
-    name: "C++",
-    mode: "clike",
+    text: {
+      type: "plain_text",
+      text: "C++",
+    },
+    value: "clike",
   },
   {
-    name: "C#",
-    mode: "clike",
+    text: {
+      type: "plain_text",
+      text: "C#",
+    },
+    value: "clike",
   },
   {
-    name: "Clojure",
-    mode: "clojure",
+    text: {
+      type: "plain_text",
+      text: "Clojure",
+    },
+    value: "clojure",
   },
   {
-    name: "COBOL",
-    mode: "cobol",
+    text: {
+      type: "plain_text",
+      text: "COBOL",
+    },
+    value: "cobol",
   },
   {
-    name: "CoffeeScript",
-    mode: "coffeescript",
+    text: {
+      type: "plain_text",
+      text: "CoffeeScript",
+    },
+    value: "coffeescript",
   },
   {
-    name: "Crystal",
-    mode: "crystal",
+    text: {
+      type: "plain_text",
+      text: "Crystal",
+    },
+    value: "crystal",
   },
   {
-    name: "CSS",
-    mode: "css",
+    text: {
+      type: "plain_text",
+      text: "CSS",
+    },
+    value: "css",
   },
   {
-    name: "D",
-    mode: "d",
+    text: {
+      type: "plain_text",
+      text: "D",
+    },
+    value: "d",
   },
   {
-    name: "Dart",
-    mode: "dart",
+    text: {
+      type: "plain_text",
+      text: "Dart",
+    },
+    value: "dart",
   },
   {
-    name: "Diff",
-    mode: "diff",
+    text: {
+      type: "plain_text",
+      text: "Diff",
+    },
+    value: "diff",
   },
   {
-    name: "Django",
-    mode: "django",
+    text: {
+      type: "plain_text",
+      text: "Django",
+    },
+    value: "django",
   },
   {
-    name: "Docker",
-    mode: "dockerfile",
+    text: {
+      type: "plain_text",
+      text: "Docker",
+    },
+    value: "dockerfile",
   },
   {
-    name: "Elixir",
-    mode: "elixir",
+    text: {
+      type: "plain_text",
+      text: "Elixir",
+    },
+    value: "elixir",
   },
   {
-    name: "Elm",
-    mode: "elm",
+    text: {
+      type: "plain_text",
+      text: "Elm",
+    },
+    value: "elm",
   },
   {
-    name: "Erlang",
-    mode: "erlang",
+    text: {
+      type: "plain_text",
+      text: "Erlang",
+    },
+    value: "erlang",
   },
   {
-    name: "Fortran",
-    mode: "fortran",
+    text: {
+      type: "plain_text",
+      text: "Fortran",
+    },
+    value: "fortran",
   },
   {
-    name: "Gherkin",
-    mode: "gherkin",
+    text: {
+      type: "plain_text",
+      text: "Gherkin",
+    },
+    value: "gherkin",
   },
   {
-    name: "GraphQL",
-    mode: "graphql",
+    text: {
+      type: "plain_text",
+      text: "GraphQL",
+    },
+    value: "graphql",
   },
   {
-    name: "Go",
-    mode: "go",
+    text: {
+      type: "plain_text",
+      text: "Go",
+    },
+    value: "go",
   },
   {
-    name: "Groovy",
-    mode: "groovy",
+    text: {
+      type: "plain_text",
+      text: "Groovy",
+    },
+    value: "groovy",
   },
   {
-    name: "Handlebars",
-    mode: "handlebars",
+    text: {
+      type: "plain_text",
+      text: "Handlebars",
+    },
+    value: "handlebars",
   },
   {
-    name: "Haskell",
-    mode: "haskell",
+    text: {
+      type: "plain_text",
+      text: "Haskell",
+    },
+    value: "haskell",
   },
   {
-    name: "HTML/XML",
-    mode: "htmlmixed",
+    text: {
+      type: "plain_text",
+      text: "HTML/XML",
+    },
+    value: "htmlmixed",
   },
   {
-    name: "Java",
-    mode: "clike",
+    text: {
+      type: "plain_text",
+      text: "Java",
+    },
+    value: "java",
   },
   {
-    name: "JavaScript",
-    mode: "javascript",
+    text: {
+      type: "plain_text",
+      text: "JavaScript",
+    },
+    value: "javascript",
   },
   {
-    name: "JSON",
-    mode: "javascript",
+    text: {
+      type: "plain_text",
+      text: "JSON",
+    },
+    value: "javascript",
   },
   {
-    name: "JSX",
-    mode: "jsx",
+    text: {
+      type: "plain_text",
+      text: "JSX",
+    },
+    value: "jsx",
   },
   {
-    name: "Julia",
-    mode: "julia",
+    text: {
+      type: "plain_text",
+      text: "Julia",
+    },
+    value: "julia",
   },
   {
-    name: "Kotlin",
-    mode: "clike",
+    text: {
+      type: "plain_text",
+      text: "Kotlin",
+    },
+    value: "kotlin",
   },
   {
-    name: "LaTeX",
-    mode: "stex",
+    text: {
+      type: "plain_text",
+      text: "LaTeX",
+    },
+    value: "stex",
   },
   {
-    name: "Lisp",
-    mode: "commonlisp",
+    text: {
+      type: "plain_text",
+      text: "Lisp",
+    },
+    value: "commonlisp",
   },
   {
-    name: "Lua",
-    mode: "lua",
+    text: {
+      type: "plain_text",
+      text: "Lua",
+    },
+    value: "lua",
   },
   {
-    name: "Markdown",
-    mode: "markdown",
+    text: {
+      type: "plain_text",
+      text: "Markdown",
+    },
+    value: "markdown",
   },
   {
-    name: "Mathematica",
-    mode: "mathematica",
+    text: {
+      type: "plain_text",
+      text: "Mathematica",
+    },
+    value: "mathematica",
   },
   {
-    name: "MATLAB/Octave",
-    mode: "octave",
+    text: {
+      type: "plain_text",
+      text: "MATLAB/Octave",
+    },
+    value: "octave",
   },
   {
-    name: "MySQL",
-    mode: "sql",
+    text: {
+      type: "plain_text",
+      text: "MySQL",
+    },
+    value: "sql",
   },
   {
-    name: "N-Triples",
-    mode: "ntriples",
+    text: {
+      type: "plain_text",
+      text: "N-Triples",
+    },
+    value: "ntriples",
   },
   {
-    name: "NGINX",
-    mode: "nginx",
+    text: {
+      type: "plain_text",
+      text: "NGINX",
+    },
+    value: "nginx",
   },
   {
-    name: "Nim",
-    mode: "nim",
+    text: {
+      type: "plain_text",
+      text: "Nim",
+    },
+    value: "nim",
   },
   {
-    name: "Objective C",
-    mode: "clike",
+    text: {
+      type: "plain_text",
+      text: "Objective C",
+    },
+    value: "objectivec",
   },
   {
-    name: "OCaml/F#",
-    mode: "mllike",
+    text: {
+      type: "plain_text",
+      text: "OCaml/F#",
+    },
+    value: "mllike",
   },
   {
-    name: "Pascal",
-    mode: "pascal",
+    text: {
+      type: "plain_text",
+      text: "Pascal",
+    },
+    value: "pascal",
   },
   {
-    name: "Perl",
-    mode: "perl",
+    text: {
+      type: "plain_text",
+      text: "Perl",
+    },
+    value: "perl",
   },
   {
-    name: "PHP",
-    mode: "php",
+    text: {
+      type: "plain_text",
+      text: "PHP",
+    },
+    value: "php",
   },
   {
-    name: "PowerShell",
-    mode: "powershell",
+    text: {
+      type: "plain_text",
+      text: "PowerShell",
+    },
+    value: "powershell",
   },
   {
-    name: "Python",
-    mode: "python",
+    text: {
+      type: "plain_text",
+      text: "Python",
+    },
+    value: "python",
   },
   {
-    name: "R",
-    mode: "r",
+    text: {
+      type: "plain_text",
+      text: "R",
+    },
+    value: "r",
   },
   {
-    name: "RISC-V",
-    mode: "riscv",
+    text: {
+      type: "plain_text",
+      text: "RISC-V",
+    },
+    value: "riscv",
   },
   {
-    name: "Ruby",
-    mode: "ruby",
+    text: {
+      type: "plain_text",
+      text: "Ruby",
+    },
+    value: "ruby",
   },
   {
-    name: "Rust",
-    mode: "rust",
+    text: {
+      type: "plain_text",
+      text: "Rust",
+    },
+    value: "rust",
   },
   {
-    name: "Sass",
-    mode: "sass",
+    text: {
+      type: "plain_text",
+      text: "Sass",
+    },
+    value: "sass",
   },
   {
-    name: "Scala",
-    mode: "clike",
+    text: {
+      type: "plain_text",
+      text: "Scala",
+    },
+    value: "scala",
   },
   {
-    name: "Smalltalk",
-    mode: "smalltalk",
+    text: {
+      type: "plain_text",
+      text: "Smalltalk",
+    },
+    value: "smalltalk",
   },
   {
-    name: "Solidity",
-    mode: "solidity",
+    text: {
+      type: "plain_text",
+      text: "Solidity",
+    },
+    value: "solidity",
   },
   {
-    name: "SPARQL",
-    mode: "sparql",
+    text: {
+      type: "plain_text",
+      text: "SPARQL",
+    },
+    value: "sparql",
   },
   {
-    name: "SQL",
-    mode: "sql",
+    text: {
+      type: "plain_text",
+      text: "SQL",
+    },
+    value: "sql",
   },
   {
-    name: "Stylus",
-    mode: "stylus",
+    text: {
+      type: "plain_text",
+      text: "Stylus",
+    },
+    value: "stylus",
   },
   {
-    name: "Swift",
-    mode: "swift",
+    text: {
+      type: "plain_text",
+      text: "Swift",
+    },
+    value: "swift",
   },
   {
-    name: "TCL",
-    mode: "tcl",
+    text: {
+      type: "plain_text",
+      text: "TCL",
+    },
+    value: "tcl",
   },
   {
-    name: "TOML",
-    mode: "toml",
+    text: {
+      type: "plain_text",
+      text: "TOML",
+    },
+    value: "toml",
   },
   {
-    name: "Turtle",
-    mode: "turtle",
+    text: {
+      type: "plain_text",
+      text: "Turtle",
+    },
+    value: "turtle",
   },
   {
-    name: "TypeScript",
-    mode: "javascript",
+    text: {
+      type: "plain_text",
+      text: "TypeScript",
+    },
+    value: "javascript",
   },
   {
-    name: "TSX",
-    mode: "jsx",
+    text: {
+      type: "plain_text",
+      text: "TSX",
+    },
+    value: "jsx",
   },
   {
-    name: "Twig",
-    mode: "twig",
+    text: {
+      type: "plain_text",
+      text: "Twig",
+    },
+    value: "twig",
   },
   {
-    name: "VB.NET",
-    mode: "vb",
+    text: {
+      type: "plain_text",
+      text: "VB.NET",
+    },
+    value: "vb",
   },
   {
-    name: "Verilog",
-    mode: "verilog",
+    text: {
+      type: "plain_text",
+      text: "Verilog",
+    },
+    value: "verilog",
   },
   {
-    name: "VHDL",
-    mode: "vhdl",
+    text: {
+      type: "plain_text",
+      text: "VHDL",
+    },
+    value: "vhdl",
   },
   {
-    name: "Vue",
-    mode: "vue",
+    text: {
+      type: "plain_text",
+      text: "Vue",
+    },
+    value: "vue",
   },
   {
-    name: "XQuery",
-    mode: "xquery",
+    text: {
+      type: "plain_text",
+      text: "XQuery",
+    },
+    value: "xquery",
   },
   {
-    name: "YAML",
-    mode: "yaml",
+    text: {
+      type: "plain_text",
+      text: "YAML",
+    },
+    value: "yaml",
   },
 ];
 
