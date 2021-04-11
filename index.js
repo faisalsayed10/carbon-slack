@@ -2,6 +2,7 @@ require("dotenv").config();
 const { App } = require("@slack/bolt");
 const getImage = require("./util/getImage");
 const Modal = require("./views/modal");
+const _ = require('lodash')
 
 let channel = {};
 
@@ -30,14 +31,12 @@ app.view("modal_view_1", async ({ ack, view, client, body }) => {
   await ack();
   const values = view.state.values;
   const message = values.message_input.message.value;
-  const code = values.code_input.code.value;
+  const code = encodeURI(values.code_input.code.value);
   const backgroundColor = values.color_input.color.value;
-  const theme =
-    values.theme_input["theme_select-action"]?.selected_option?.value;
-  const language =
-    values.lang_input["language_select-action"]?.selected_option?.value;
-  const fontFamily =
-    values.ff_input["font_select-action"]?.selected_option?.value;
+  // const theme = values.theme_input["theme_select-action"]?.selected_option?.value;
+	const theme = _.get(values, 'theme_input["theme_select-action"].selected_option.value')
+  const language = _.get(values, 'lang_input["language_select-action"].selected_option.value')
+  const fontFamily = _.get(values, 'ff_input["font_select-action"]?.selected_option?.value')
 
   const data = { code, backgroundColor, language, theme, fontFamily };
 
