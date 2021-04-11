@@ -48,15 +48,13 @@ app.view("modal_view_1", async ({ ack, view, client, body }) => {
 	);
 
 	await client.chat.postMessage({
-		token: process.env.SLACK_USER_TOKEN,
 		channel: channel[body.user.id],
 		blocks: [
 			{
 				type: "section",
 				text: {
-					type: "plain_text",
-					text: message,
-					emoji: true,
+					type: "mrkdwn",
+					text: `<@${body.user.name}>: ${message}`,
 				},
 			},
 			{
