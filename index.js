@@ -5,6 +5,7 @@ const Modal = require("./views/modal");
 const _ = require('lodash')
 
 let channel = {};
+const admin = "U014ND5P1N2";
 
 const app = new App({
 	token: process.env.SLACK_BOT_TOKEN,
@@ -20,7 +21,7 @@ app.command("/carbon", async ({ ack, body, client }) => {
 		await client.views.open({
 			trigger_id: body.trigger_id,
 			view_id: body.view_id,
-			view: Modal,
+			view: Modal(),
 		});
 	} catch (error) {
 		console.error(error);
@@ -31,13 +32,13 @@ app.view("modal_view_1", async ({ ack, view, client, body }) => {
 	await ack();
 	const values = view.state.values;
 	const message = values.message_input.message.value;
-	const code = encodeURI(values.code_input.code.value);
+	const code = values.code_input.code.value;
 	const backgroundColor = values.color_input.color.value;
 	const theme = _.get(values, 'theme_input["theme_select-action"].selected_option.value')
 	const language = _.get(values, 'lang_input["language_select-action"].selected_option.value')
 	const fontFamily = _.get(values, 'ff_input["font_select-action"]?.selected_option?.value')
 
-	const data = { code, backgroundColor, language, theme, fontFamily };
+	const data = { code: encodeURIComponent(code), backgroundColor, language, theme, fontFamily };
 
 	const url = await getImage(
 		data,
@@ -63,14 +64,28 @@ app.view("modal_view_1", async ({ ack, view, client, body }) => {
 				alt_text: "carbon_image",
 			},
 			{
-			type: "context",
-			elements: [
-				{
-					type: "mrkdwn",
-					text: ":sparkles: Created with `/carbon`"
-				}
-			]
-		}
+				type: "actions",
+				elements: [
+					{
+						type: "button",
+						text: {
+							type: "plain_text",
+							text: "Copy Code"
+						},
+						value: code,
+						action_id: "copy_code"
+					}
+				]
+			},
+			{
+				type: "context",
+				elements: [
+					{
+						type: "mrkdwn",
+						text: ":sparkles: Created with `/carbon`"
+					}
+				]
+			}
 		],
 	});
 
@@ -87,6 +102,27 @@ app.action("font_select-action", async ({ ack }) => {
 
 app.action("language_select-action", async ({ ack }) => {
 	await ack();
+});
+
+app.action('copy_code', async ({ body, ack, client, payload }) => {
+	await ack();
+	await client.chat.postEphemeral({
+		channel: body.channel.id,
+		user: body.user.id,
+		text: `:sparkles: Copy this code: \n \`\`\`${payload.value}\`\`\``
+	})
+});
+
+app.shortcut('delete_carbon', async ({ body, ack, client, payload }) => {
+	await ack();
+	const deleteRequester = payload.user.id;
+	const originalSender = payload.message.blocks[0].text.text.split('<@')[1].split('>:')[0]
+	const ts = payload.message.ts
+	const channel = payload.channel.id
+
+	if (deleteRequester === originalSender || deleteRequester === admin) {
+		await client.chat.delete({ ts, channel })
+	}
 });
 
 (async () => {

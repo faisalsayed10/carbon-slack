@@ -1,11 +1,11 @@
 const code = require("./blocks/code");
-const color = require("./blocks/color");
+const getColor = require("./blocks/color");
 const fontFamily = require("./blocks/font-family");
 const language = require("./blocks/language");
 const message = require("./blocks/message");
 const theme = require("./blocks/theme");
 
-const Modal = {
+const Modal = () => ({
   type: "modal",
   callback_id: "modal_view_1",
   title: {
@@ -23,7 +23,7 @@ const Modal = {
     text: "Cancel",
     emoji: true,
   },
-  blocks: [message, code, color, { type: "divider" }, theme, language, fontFamily],
-};
+  blocks: [message, code, getColor(), { type: "divider" }, theme, language, fontFamily],
+});
 
 module.exports = Modal;

@@ -1,19 +1,25 @@
-const color = {
-  type: "input",
-  block_id: "color_input",
-  label: {
-    type: "plain_text",
-    text: "Background Color:",
-  },
-  element: {
-    type: "plain_text_input",
-    action_id: "color",
-    max_length: 6,
-    placeholder: {
-      type: "plain_text",
-      text: "Hex Code (Without #)",
-    },
-  },
-};
+const randomHex = require('random-hex');
 
-module.exports = color
+const getColor = () => {
+	const defaultHex = randomHex.generate().split("#")[1];
+	return {
+		type: "input",
+		block_id: "color_input",
+		label: {
+			type: "plain_text",
+			text: "Background Color:",
+		},
+		element: {
+			type: "plain_text_input",
+			action_id: "color",
+			max_length: 6,
+			placeholder: {
+				type: "plain_text",
+				text: "Hex Code (Without #)",
+			},
+			initial_value: defaultHex
+		},
+	}
+}
+
+module.exports = getColor
