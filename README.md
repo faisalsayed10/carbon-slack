@@ -1,9 +1,9 @@
 # carbon-slack
-Create and share beautiful images of your source code directly in slack
+Create and share beautiful images of your source code directly from slack.
 
-Unofficial Slack App for Carbon!
+unofficial slackbot for Carbon!
 
-Website: [carbon](https://carbon.now.sh)
+[Website](https://carbon.now.sh)
 
 ## Screenshots:
 
