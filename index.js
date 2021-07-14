@@ -3,6 +3,7 @@ const { App } = require("@slack/bolt");
 const getImage = require("./util/getImage");
 const Modal = require("./views/modal");
 const _ = require('lodash')
+const { removeSpecialTags } = require("./util/preventPings");
 
 let channel = {};
 const admin = "U014ND5P1N2";
@@ -31,8 +32,8 @@ app.command("/carbon", async ({ ack, body, client }) => {
 app.view("modal_view_1", async ({ ack, view, client, body }) => {
 	await ack();
 	const values = view.state.values;
-	const message = values.message_input.message.value;
-	const code = values.code_input.code.value;
+	const message =  removeSpecialTags(values.message_input.message.value);
+	const code = removeSpecialTags(values.code_input.code.value);
 	const backgroundColor = values.color_input.color.value;
 	const theme = _.get(values, 'theme_input["theme_select-action"].selected_option.value')
 	const language = _.get(values, 'lang_input["language_select-action"].selected_option.value')
