@@ -1,3 +1,7 @@
+const { Deta } = require("deta");
+
+const db = Deta(process.env.DETA_PROJECT_KEY).Base("carbon-slack");
+
 const FONTS = [
   {
     text: { type: "plain_text", text: "Anonymous Pro" },
@@ -644,4 +648,4 @@ const LANGUAGES = [
   },
 ];
 
-module.exports = { FONTS, THEMES, LANGUAGES };
+module.exports = { db, FONTS, THEMES, LANGUAGES };
