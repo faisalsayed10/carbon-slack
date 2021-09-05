@@ -4,6 +4,7 @@ const getImage = require("./util/getImage");
 const Modal = require("./views/modal");
 const _ = require('lodash')
 const { removeSpecialTags } = require("./util/preventPings");
+const { db } = require("./constants");
 
 let channel = {};
 const admin = "U014ND5P1N2";
@@ -31,6 +32,8 @@ app.command("/carbon", async ({ ack, body, client }) => {
 
 app.view("modal_view_1", async ({ ack, view, client, body }) => {
 	await ack();
+	const tokens = await db.get(body.team.id);
+
 	const values = view.state.values;
 	const message =  removeSpecialTags(values.message_input.message.value);
 	const code = removeSpecialTags(values.code_input.code.value);
@@ -45,11 +48,11 @@ app.view("modal_view_1", async ({ ack, view, client, body }) => {
 		data,
 		client,
 		body.user.id,
-		channel[body.user.id],
-		message
+		body.team.id
 	);
 
 	await client.chat.postMessage({
+		token: (tokens && tokens.bot_token) || process.env.SLACK_BOT_TOKEN,
 		channel: channel[body.user.id],
 		blocks: [
 			{
@@ -108,6 +111,7 @@ app.action("language_select-action", async ({ ack }) => {
 app.action('copy_code', async ({ body, ack, client, payload }) => {
 	await ack();
 	await client.chat.postEphemeral({
+		token: (tokens && tokens.bot_token) || process.env.SLACK_BOT_TOKEN,
 		channel: body.channel.id,
 		user: body.user.id,
 		text: `:sparkles: Copy this code: \n \`\`\`${payload.value}\`\`\``
@@ -122,7 +126,11 @@ app.shortcut('delete_carbon', async ({ body, ack, client, payload }) => {
 	const channel = payload.channel.id
 
 	if (deleteRequester === originalSender || deleteRequester === admin) {
-		await client.chat.delete({ ts, channel })
+		await client.chat.delete({
+			token: (tokens && tokens.bot_token) ||process.env.SLACK_BOT_TOKEN,
+			ts,
+			channel,
+	 })
 	}
 });
 

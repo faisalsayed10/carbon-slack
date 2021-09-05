@@ -6,7 +6,7 @@ const { v4 } = require("uuid");
 const uploadFile = require("./uploadFile");
 require("dotenv").config();
 
-const getImage = async (body, client, userId) => {
+const getImage = async (body, client, userId, teamId) => {
   let filename = {};
   const streamPipeline = promisify(pipeline);
   filename[userId] = `${v4()}.png`;
@@ -19,7 +19,7 @@ const getImage = async (body, client, userId) => {
 
   await streamPipeline(response.body, createWriteStream(filename[userId]));
 
-  return uploadFile(client, filename[userId]);
+  return uploadFile(client, filename[userId], teamId);
 };
 
 module.exports = getImage;
