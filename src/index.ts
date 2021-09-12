@@ -6,6 +6,7 @@ import path from "path";
 import { deleteInstallation, fetchInstallation, storeInstallation } from "./authorize";
 import getImage from "./util/getImage";
 import removeSpecialTags from "./util/preventPings";
+import home from "./views/home";
 import { Modal } from "./views/modal";
 
 let channel = {};
@@ -39,11 +40,33 @@ receiver.router.get("/terms-of-service", (_, res) =>
 	res.sendFile(path.join(__dirname, "../static/html/terms-of-service.html"))
 );
 
-app.command("/carbon", async ({ ack, body, client }) => {
+app.command("/carbon", async ({ ack, body, client, command }) => {
 	await ack();
 	channel[body.user_id] = body.channel_id;
 
 	try {
+		if (command.text.toLowerCase() === "help") {
+			await client.chat.postEphemeral({
+				channel: body.channel_id,
+				user: body.user_id,
+				text: `:wave: Hey! This is Carbon for Slack.
+				It integrates the core functionality of <https://carbon.now.sh|carbon-app> into a slackbot and makes it possible for you to create and share beautiful images of your code directly in Slack.
+				
+				How to use it?
+				
+				1. Invoke the \`/carbon\` command (IMPORTANT: invoke the command only where you want to post your code because the image will be directly posted once you submit)
+				
+				2. Add your desired code, theme, font, background in the appropriate fields.
+				
+				3. Click Submit.
+				
+				4. Wait for a few seconds and voila!
+				
+				For more information, check out <https://carbon-slack.fayd.me|Carbon for Slack's Website>.`,
+			});
+			return;
+		}
+
 		await client.views.open({ trigger_id: body.trigger_id, view_id: body.view_id, view: Modal() });
 	} catch (error) {
 		console.error(error);
@@ -60,9 +83,7 @@ app.view("modal_view_1", async ({ ack, view, client, body }) => {
 	const theme = _.get(values, 'theme_input["theme_select-action"].selected_option.value');
 	const language = _.get(values, 'lang_input["language_select-action"].selected_option.value');
 	const fontFamily = _.get(values, 'ff_input["font_select-action"]?.selected_option?.value');
-
 	const data = { code: encodeURIComponent(code), backgroundColor, language, theme, fontFamily };
-
 	const url = await getImage(data, client, body.user.id, body);
 
 	await client.chat.postMessage({
@@ -113,6 +134,9 @@ app.view("modal_view_1", async ({ ack, view, client, body }) => {
 app.action("theme_select-action", async ({ ack }) => await ack());
 app.action("font_select-action", async ({ ack }) => await ack());
 app.action("language_select-action", async ({ ack }) => await ack());
+app.event("app_home_opened", async ({ client, event }) => {
+	await client.views.publish({ user_id: event.user, view: home });
+});
 
 app.action("copy_code", async ({ body, ack, client, payload }) => {
 	await ack();
