@@ -1,4 +1,4 @@
-const code = {
+export default {
   type: "input",
   block_id: "code_input",
   label: {
@@ -16,5 +16,3 @@ const code = {
     },
   },
 };
-
-module.exports = code

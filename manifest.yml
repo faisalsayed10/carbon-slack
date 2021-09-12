@@ -1,0 +1,74 @@
+_metadata:
+  major_version: 1
+  minor_version: 1
+display_information:
+  name: Carbon for Slack
+  description: Create and share beautiful images of your source code directly from Slack
+  background_color: "#0040ff"
+  long_description: "Bot which helps you create and share beautiful images of your
+    source code directly from Slack! (and without even going to carbon's
+    website: https://carbon.now.sh)\r
+
+    This makes it easier to share code snippets without leaving Slack at
+    all!\r
+
+    \r
+
+    How to use it?\r
+
+    1. Invoke the /carbon command (IMPORTANT: invoke the command only where
+    you want to post your code because the image will be directly posted once
+    you submit)\r
+
+    \r
+
+    2. Add your code, theme, font, background.\r
+
+    \r
+
+    3.Click Submit.\r
+
+    \r
+
+    4. Wait for a few seconds and voila!\r
+
+    \r
+
+    Source: https://github.com/faisalsayed10/carbon-slack/"
+features:
+  bot_user:
+    display_name: carbon-slack
+    always_online: false
+  shortcuts:
+    - name: Delete Message
+      type: message
+      callback_id: delete_carbon
+      description: Delete your message containing a carbon image
+  slash_commands:
+    - command: /carbon
+      url: https://2d67-203-114-232-58.ngrok.io/slack/events
+      description: Create an Image
+      should_escape: false
+oauth_config:
+  redirect_urls:
+    - https://2d67-203-114-232-58.ngrok.io/slack/oauth_redirect
+    - https://fayd.me/api/carbon-slack/verified
+  scopes:
+    user:
+      - files:read
+      - files:write
+    bot:
+      - channels:read
+      - chat:write
+      - chat:write.public
+      - commands
+      - files:read
+      - files:write
+      - team:read
+settings:
+  interactivity:
+    is_enabled: true
+    request_url: https://2d67-203-114-232-58.ngrok.io/slack/events
+  org_deploy_enabled: false
+  socket_mode_enabled: false
+  token_rotation_enabled: false

@@ -1,6 +1,6 @@
-const randomHex = require('random-hex');
+import randomHex from "random-hex";
 
-const getColor = () => {
+export const getColor = () => {
 	const defaultHex = randomHex.generate().split("#")[1];
 	return {
 		type: "input",
@@ -17,9 +17,7 @@ const getColor = () => {
 				type: "plain_text",
 				text: "Hex Code (Without #)",
 			},
-			initial_value: defaultHex
+			initial_value: defaultHex,
 		},
-	}
-}
-
-module.exports = getColor
+	};
+};

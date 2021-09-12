@@ -1,8 +1,8 @@
-const { Deta } = require("deta");
+import { Deta } from "deta";
 
-const db = Deta(process.env.DETA_PROJECT_KEY).Base("carbon-slack");
+export const installationStore = Deta(process.env.DETA_PROJECT_KEY).Base("carbon_workspaces");
 
-const FONTS = [
+export const FONTS = [
   {
     text: { type: "plain_text", text: "Anonymous Pro" },
     value: "Anonymous Pro",
@@ -36,7 +36,7 @@ const FONTS = [
   { text: { type: "plain_text", text: "Ubuntu Mono" }, value: "Ubuntu Mono" },
 ];
 
-const THEMES = [
+export const THEMES = [
   {
     text: { type: "plain_text", text: "3024 Night" },
     value: "3024-night",
@@ -120,7 +120,7 @@ const THEMES = [
 ];
 
 // needs refactoring
-const LANGUAGES = [
+export const LANGUAGES = [
   {
     text: {
       type: "plain_text",
@@ -647,5 +647,3 @@ const LANGUAGES = [
     value: "yaml",
   },
 ];
-
-module.exports = { db, FONTS, THEMES, LANGUAGES };

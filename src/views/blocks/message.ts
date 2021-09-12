@@ -1,4 +1,4 @@
-const message = {
+export default {
   type: "input",
   block_id: "message_input",
   label: {
@@ -11,5 +11,3 @@ const message = {
     multiline: true,
   },
 };
-
-module.exports = message;
