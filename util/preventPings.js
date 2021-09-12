@@ -1,7 +1,8 @@
 // credits to @ifvictr for the code :D
-const removeSpecialTags = (str) =>
-	str
-		.replace(/@(channel|everyone|here)/gi, '@\u200c$1')
-		.replace(/<!(channel|everyone|here)\|(.*?)>/gi, '<\u200c!$1|$2>')
+const removeSpecialTags = (str) => {
+	return str
+		.replace(/<!(channel|here|everyone)>/g, (t) => t.slice(1).slice(0, -1))
+		.replace(/@(channel|here|everyone)/g, (t) => t.slice(1));
+}
 
 module.exports = { removeSpecialTags }

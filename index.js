@@ -110,6 +110,7 @@ app.action("language_select-action", async ({ ack }) => {
 
 app.action('copy_code', async ({ body, ack, client, payload }) => {
 	await ack();
+	const tokens = await db.get(body.team.id);
 	await client.chat.postEphemeral({
 		token: (tokens && tokens.bot_token) || process.env.SLACK_BOT_TOKEN,
 		channel: body.channel.id,
@@ -120,6 +121,7 @@ app.action('copy_code', async ({ body, ack, client, payload }) => {
 
 app.shortcut('delete_carbon', async ({ body, ack, client, payload }) => {
 	await ack();
+	const tokens = await db.get(body.team.id);
 	const deleteRequester = payload.user.id;
 	const originalSender = payload.message.blocks[0].text.text.split('<@')[1].split('>:')[0]
 	const ts = payload.message.ts
