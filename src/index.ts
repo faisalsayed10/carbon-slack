@@ -1,7 +1,6 @@
 require("dotenv").config();
 import { App, ExpressReceiver } from "@slack/bolt";
 import express from "express";
-import { unlink } from "fs";
 import _ from "lodash";
 import path from "path";
 import { deleteInstallation, fetchInstallation, storeInstallation } from "./authorize";
