@@ -6,7 +6,7 @@ import path from "path";
 import { deleteInstallation, fetchInstallation, storeInstallation } from "./authorize";
 import getImage from "./util/getImage";
 import removeSpecialTags from "./util/preventPings";
-import home from "./views/home";
+import home, { helpText } from "./views/home";
 import { Modal } from "./views/modal";
 
 let channel = {};
@@ -49,20 +49,7 @@ app.command("/carbon", async ({ ack, body, client, command }) => {
 			await client.chat.postEphemeral({
 				channel: body.channel_id,
 				user: body.user_id,
-				text: `:wave: Hey! This is Carbon for Slack.
-				It integrates the core functionality of <https://carbon.now.sh|carbon-app> into a slackbot and makes it possible for you to create and share beautiful images of your code directly in Slack.
-				
-				How to use it?
-				
-				1. Invoke the \`/carbon\` command (IMPORTANT: invoke the command only where you want to post your code because the image will be directly posted once you submit)
-				
-				2. Add your desired code, theme, font, background in the appropriate fields.
-				
-				3. Click Submit.
-				
-				4. Wait for a few seconds and voila!
-				
-				For more information, check out <https://carbon-slack.fayd.me|Carbon for Slack's Website>.`,
+				text: helpText,
 			});
 			return;
 		}
