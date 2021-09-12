@@ -15,15 +15,7 @@ const receiver = new ExpressReceiver({
 	signingSecret: process.env.SLACK_SIGNING_SECRET,
 	clientId: process.env.SLACK_CLIENT_ID,
 	clientSecret: process.env.SLACK_CLIENT_SECRET,
-	scopes: [
-		"channels:read",
-		"chat:write",
-		"chat:write.public",
-		"commands",
-		"files:read",
-		"files:write",
-		"team:read",
-	],
+	scopes: ["channels:read", "chat:write", "chat:write.public", "commands", "team:read"],
 	stateSecret: process.env.STATE_SECRET,
 	installerOptions: {
 		redirectUriPath: "/slack/oauth_redirect",
@@ -37,6 +29,15 @@ const app = new App({ receiver });
 
 receiver.router.use("/images", express.static(path.join(__dirname, "../static/images")));
 receiver.router.use("/css", express.static(path.join(__dirname, "../static/css")));
+receiver.router.get("/", (_, res) =>
+	res.sendFile(path.join(__dirname, "../static/html/index.html"))
+);
+receiver.router.get("/privacy-policy", (_, res) =>
+	res.sendFile(path.join(__dirname, "../static/html/privacy-policy.html"))
+);
+receiver.router.get("/terms-of-service", (_, res) =>
+	res.sendFile(path.join(__dirname, "../static/html/terms-of-service.html"))
+);
 
 app.command("/carbon", async ({ ack, body, client }) => {
 	await ack();
