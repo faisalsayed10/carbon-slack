@@ -13,9 +13,9 @@ type Data = {
 	fontFamily: { [actionId: string]: ViewStateValue };
 };
 
-export default async (data: Data, client: WebClient, userId: string, body: SlackViewAction) => {
+export default async (data: Data, client: WebClient, body: SlackViewAction) => {
 	let filename = {};
-	filename[userId] = `${v4()}.png`;
+	filename[body.user.id] = `${v4()}.png`;
 
 	const response = await fetch("https://carbonnowsh.herokuapp.com/", {
 		method: "post",
@@ -23,5 +23,5 @@ export default async (data: Data, client: WebClient, userId: string, body: Slack
 		headers: { "Content-Type": "application/json" },
 	});
 
-	return uploadFile(client, filename[userId], body, response);
+	return uploadFile(client, filename[body.user.id], body, response);
 };

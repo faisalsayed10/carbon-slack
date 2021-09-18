@@ -40,17 +40,13 @@ receiver.router.get("/terms-of-service", (_, res) =>
 	res.sendFile(path.join(__dirname, "../static/html/terms-of-service.html"))
 );
 
-app.command("/carbon", async ({ ack, body, client, command }) => {
+app.command("/carbon", async ({ ack, body, client, command, respond }) => {
 	await ack();
 	channel[body.user_id] = body.channel_id;
 
 	try {
-		if (command.text.toLowerCase() === "help") {
-			await client.chat.postEphemeral({
-				channel: body.channel_id,
-				user: body.user_id,
-				text: helpText,
-			});
+		if (command.text.trim().toLowerCase() === "help") {
+			await respond({ response_type: "ephemeral", text: helpText });
 			return;
 		}
 
@@ -71,51 +67,55 @@ app.view("modal_view_1", async ({ ack, view, client, body }) => {
 	const language = _.get(values, 'lang_input["language_select-action"].selected_option.value');
 	const fontFamily = _.get(values, 'ff_input["font_select-action"]?.selected_option?.value');
 	const data = { code: encodeURIComponent(code), backgroundColor, language, theme, fontFamily };
-	const url = await getImage(data, client, body.user.id, body);
+	const url = await getImage(data, client, body);
 
-	await client.chat.postMessage({
-		channel: channel[body.user.id],
-		blocks: [
-			{
-				type: "section",
-				text: {
-					type: "mrkdwn",
-					text: `<@${body.user.name}>: ${message}`,
-				},
-			},
-			{
-				type: "image",
-				image_url: url,
-				alt_text: "carbon_image",
-			},
-			{
-				type: "actions",
-				elements: [
-					{
-						type: "button",
-						text: {
-							type: "plain_text",
-							text: "Copy Code",
-						},
-						value: code,
-						action_id: "copy_code",
-					},
-				],
-			},
-			{
-				type: "context",
-				elements: [
-					{
+	try {
+		await client.chat.postMessage({
+			channel: channel[body.user.id],
+			blocks: [
+				{
+					type: "section",
+					text: {
 						type: "mrkdwn",
-						text: ":sparkles: Created with `/carbon`",
+						text: `<@${body.user.name}>: ${message}`,
 					},
-				],
-			},
-		],
-		text: `<@${body.user.name}>: ${message}`,
-	});
-
-	delete channel[body.user.id];
+				},
+				{
+					type: "image",
+					image_url: url,
+					alt_text: "carbon_image",
+				},
+				{
+					type: "actions",
+					elements: [
+						{
+							type: "button",
+							text: {
+								type: "plain_text",
+								text: "Copy Code",
+							},
+							value: code,
+							action_id: "copy_code",
+						},
+					],
+				},
+				{
+					type: "context",
+					elements: [
+						{
+							type: "mrkdwn",
+							text: ":sparkles: Created with `/carbon`",
+						},
+					],
+				},
+			],
+			text: `<@${body.user.name}>: ${message}`,
+		});
+	} catch (err) {
+		console.error(err);
+	} finally {
+		delete channel[body.user.id];
+	}
 });
 
 app.action("theme_select-action", async ({ ack }) => await ack());
