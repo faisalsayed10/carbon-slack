@@ -11,6 +11,9 @@ How to use it?
 
 ## Screenshots:
 
-![slackbot-modal](https://carbon-slack.fayd.me/images/carbon-ss-1.png)
+![slackbot-modal](https://carbon-slack.fayd.me/images/carbon-ss-1.jpg)
 
-![output](https://carbon-slack.fayd.me/images/carbon-ss-2.png)
+![output](https://carbon-slack.fayd.me/images/carbon-ss-2.jpg)
+
+
+Slack App Directory Listing: https://slack.com/apps/A01U2UBUMN0-carbon-for-slack?tab=more_info
