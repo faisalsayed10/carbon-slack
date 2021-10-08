@@ -46,6 +46,7 @@ a {
 
 h1 {
 	font-weight: 600;
+	font-size: 32px;
 }
 
 h2 {
@@ -54,6 +55,10 @@ h2 {
 
 h3 {
 	font-weight: 400;
+}
+
+.title {
+	text-decoration: underline;
 }
 
 .title,
