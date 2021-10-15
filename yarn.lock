@@ -1803,6 +1803,13 @@ strip-json-comments@~2.0.1:
   resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-2.0.1.tgz#3c531942e908c2697c0ec344858c286c7ca0a60a"
   integrity sha1-PFMZQukIwml8DsNEhYwobHygpgo=
 
+stump.js@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/stump.js/-/stump.js-1.1.0.tgz#4664bb7fc686a837b716889dcf1d031cf84ffcba"
+  integrity sha512-lQQ7brFtWj+0YQIk0bJhKBUGcehf9YY2O89W2sGd5S6dpYVDXQFlbzsMSHm+W2aOLzcqvB2PunYkBLpoPGBpxg==
+  dependencies:
+    node-fetch "^2.6.1"
+
 supports-color@^5.5.0:
   version "5.5.0"
   resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-5.5.0.tgz#e2e69a44ac8772f78a1ec0b35b689df6530efc8f"

@@ -1,4 +1,7 @@
 import { Deta } from "deta";
+import Stump from "stump.js";
+
+export const stump = new Stump(['Debug', 'Timestamp']);
 
 export const installationStore = Deta(process.env.DETA_PROJECT_KEY).Base("carbon_workspaces");
 

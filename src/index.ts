@@ -4,6 +4,7 @@ import express from "express";
 import _ from "lodash";
 import path from "path";
 import { deleteInstallation, fetchInstallation, storeInstallation } from "./authorize";
+import { stump } from "./constants";
 import getImage from "./util/getImage";
 import removeSpecialTags from "./util/preventPings";
 import home, { helpText } from "./views/home";
@@ -51,8 +52,8 @@ app.command("/carbon", async ({ ack, body, client, command, respond }) => {
 		}
 
 		await client.views.open({ trigger_id: body.trigger_id, view_id: body.view_id, view: Modal() });
-	} catch (error) {
-		console.error(error);
+	} catch (err) {
+		stump.error(err);
 	}
 });
 
@@ -112,7 +113,7 @@ app.view("modal_view_1", async ({ ack, view, client, body }) => {
 			text: `<@${body.user.name}>: ${message}`,
 		});
 	} catch (err) {
-		console.error(err);
+		stump.error(err);
 	} finally {
 		delete channel[body.user.id];
 	}
@@ -146,5 +147,5 @@ app.shortcut("delete_carbon", async ({ body, ack, client, payload }) => {
 
 (async () => {
 	await app.start(PORT);
-	console.log("⚡️ Bolt app is running!");
+	stump.info("⚡️ Bolt app is running!");
 })();
