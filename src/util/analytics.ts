@@ -15,4 +15,6 @@ export const event_data = (type: string, value: string) => ({
 });
 
 export const sendEvent = async (type: string, value: string) =>
-	await axios.post(`${process.env.UMAMI}/api/collect`, event_data(type, value));
+	await axios.post(`${process.env.UMAMI}/api/collect`, event_data(type, value), {
+		headers: { "User-Agent": "carbon-slack/2.1.0" },
+	});
