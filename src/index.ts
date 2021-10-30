@@ -81,7 +81,7 @@ app.view("modal_view_1", async ({ ack, view, client, body }) => {
 					type: "section",
 					text: {
 						type: "mrkdwn",
-						text: `<@${body.user.name}>: ${message}`,
+						text: message,
 					},
 				},
 				{
@@ -108,7 +108,7 @@ app.view("modal_view_1", async ({ ack, view, client, body }) => {
 					elements: [
 						{
 							type: "mrkdwn",
-							text: ":sparkles: Created with `/carbon`",
+							text: `:sparkles: Created with \`/carbon\` by <@${body.user.name}>`,
 						},
 					],
 				},

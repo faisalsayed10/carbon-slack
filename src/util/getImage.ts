@@ -13,7 +13,7 @@ type Data = {
 };
 
 export default async (data: Data, client: WebClient, body: SlackViewAction) => {
-	const response = await fetch("https://carbonnowsh.herokuapp.com/", {
+	const response = await fetch("https://carbon-slack-api.herokuapp.com/", {
 		method: "post",
 		body: JSON.stringify(data),
 		headers: { "Content-Type": "application/json" },
