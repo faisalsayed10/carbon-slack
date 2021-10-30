@@ -1,11 +1,11 @@
 import { SlackViewAction } from "@slack/bolt";
 import { WebClient } from "@slack/web-api";
+import { Readable } from "stream";
 import { installationStore } from "../constants";
 import getPublicURL from "./getPublicURL";
 require("dotenv").config();
-const { Readable } = require("stream");
 
-export default async (client: WebClient, filename: string, body: SlackViewAction, res) => {
+export default async (client: WebClient, body: SlackViewAction, res) => {
 	const isEnterprise = body.is_enterprise_install && body.enterprise !== undefined;
 	const installation = await installationStore.get(isEnterprise ? body.enterprise.id : body.team.id);
 	const buffer = await res.buffer();

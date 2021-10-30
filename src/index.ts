@@ -5,6 +5,7 @@ import _ from "lodash";
 import path from "path";
 import { deleteInstallation, fetchInstallation, storeInstallation } from "./authorize";
 import { stump } from "./constants";
+import { sendEvent } from "./util/analytics";
 import getImage from "./util/getImage";
 import removeSpecialTags from "./util/preventPings";
 import home, { helpText } from "./views/home";
@@ -44,8 +45,9 @@ receiver.router.get("/terms-of-service", (_, res) =>
 app.command("/carbon", async ({ ack, body, client, command, respond }) => {
 	await ack();
 	channel[body.user_id] = body.channel_id;
-
+	
 	try {
+		await sendEvent('command', '/carbon');
 		if (command.text.trim().toLowerCase() === "help") {
 			await respond({ response_type: "ephemeral", text: helpText });
 			return;
@@ -71,6 +73,7 @@ app.view("modal_view_1", async ({ ack, view, client, body }) => {
 	const url = await getImage(data, client, body);
 
 	try {
+		await sendEvent("submit", "image-posted");
 		await client.chat.postMessage({
 			channel: channel[body.user.id],
 			blocks: [
