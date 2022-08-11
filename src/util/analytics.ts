@@ -14,7 +14,10 @@ export const event_data = (type: string, value: string) => ({
 	type: "event",
 });
 
-export const sendEvent = async (type: string, value: string) =>
-	await axios.post(`${process.env.UMAMI}/api/collect`, event_data(type, value), {
-		headers: { "User-Agent": "carbon-slack/2.1.0" },
-	});
+export const sendEvent = async (type: string, value: string) => {
+	try {
+		await axios.post(`${process.env.UMAMI}/api/collect`, event_data(type, value), {
+			headers: { "User-Agent": "carbon-slack/2.1.0" },
+		});
+	} catch (err) { }
+}

@@ -10,6 +10,7 @@
 	},
 	"dependencies": {
 		"@slack/bolt": "^3.4.1",
+		"axios": "^0.24.0",
 		"deta": "^1.0.0",
 		"express": "^4.17.1",
 		"lodash": "^4.17.21",
