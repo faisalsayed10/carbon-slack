@@ -6,7 +6,6 @@ import path from "path";
 import { deleteInstallation, fetchInstallation, storeInstallation } from "./authorize";
 import { stump } from "./constants";
 import { sendEvent } from "./util/analytics";
-import getImage from "./util/getImage";
 import removeSpecialTags from "./util/preventPings";
 import home, { helpText } from "./views/home";
 import { Modal } from "./views/modal";
@@ -45,15 +44,15 @@ receiver.router.get("/terms-of-service", (_, res) =>
 app.command("/carbon", async ({ ack, body, client, command, respond }) => {
 	await ack();
 	channel[body.user_id] = body.channel_id;
-	
+
 	try {
-		await sendEvent('command', '/carbon');
 		if (command.text.trim().toLowerCase() === "help") {
 			await respond({ response_type: "ephemeral", text: helpText });
 			return;
 		}
 
 		await client.views.open({ trigger_id: body.trigger_id, view_id: body.view_id, view: Modal() });
+		await sendEvent('command', '/carbon');
 	} catch (err) {
 		stump.error(err);
 	}
@@ -69,8 +68,11 @@ app.view("modal_view_1", async ({ ack, view, client, body }) => {
 	const theme = _.get(values, 'theme_input["theme_select-action"].selected_option.value');
 	const language = _.get(values, 'lang_input["language_select-action"].selected_option.value');
 	const fontFamily = _.get(values, 'ff_input["font_select-action"]?.selected_option?.value');
-	const data = { code: encodeURIComponent(code), backgroundColor, language, theme, fontFamily };
-	const url = await getImage(data, client, body);
+
+	// const data = { code: encodeURIComponent(code), backgroundColor, language, theme, fontFamily };
+	// const url = await getImage(data, client, body);
+
+	const url = `https://carbon-slack-api.herokuapp.com/?code=${encodeURIComponent(code)}&theme=${theme}&backgroundColor=${backgroundColor}&language=${language}&fontFamily=${fontFamily}`;
 
 	try {
 		await sendEvent("submit", "image-posted");

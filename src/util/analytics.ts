@@ -3,7 +3,7 @@ require("dotenv").config();
 
 export const event_data = (type: string, value: string) => ({
 	payload: {
-		website: "85a85c8e-fe40-4011-a12c-0af38ca298e0",
+		website: "fb96c1ac-76ff-4a7f-af17-4d47f24d6f2f",
 		url: "/",
 		event_type: type,
 		event_value: value,

@@ -1,2 +1,2 @@
 language = "nodejs"
-run = "node dist/index.js"
+run = "yarn build && node dist/index.js"
