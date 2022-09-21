@@ -72,7 +72,7 @@ app.view("modal_view_1", async ({ ack, view, client, body }) => {
 	// const data = { code: encodeURIComponent(code), backgroundColor, language, theme, fontFamily };
 	// const url = await getImage(data, client, body);
 
-	const url = `https://carbon-slack-api.herokuapp.com/?code=${encodeURIComponent(code)}&theme=${theme}&backgroundColor=${backgroundColor}&language=${language}&fontFamily=${fontFamily}`;
+	const url = `https://carbon-api.faisalsayed1.repl.co?code=${encodeURIComponent(code)}&theme=${theme}&backgroundColor=${backgroundColor}&language=${language}&fontFamily=${fontFamily}`;
 
 	try {
 		await sendEvent("submit", "image-posted");
