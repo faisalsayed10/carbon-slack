@@ -72,7 +72,7 @@ app.view("modal_view_1", async ({ ack, view, client, body }) => {
 	// const data = { code: encodeURIComponent(code), backgroundColor, language, theme, fontFamily };
 	// const url = await getImage(data, client, body);
 
-	const url = `https://carbon-api.faisalsayed1.repl.co?code=${encodeURIComponent(code)}&theme=${theme}&backgroundColor=${backgroundColor}&language=${language}&fontFamily=${fontFamily}`;
+	const url = `https://carbon-api.caprover.fayd.me?code=${encodeURIComponent(code)}&theme=${theme}&backgroundColor=${backgroundColor}&language=${language}&fontFamily=${fontFamily}`;
 
 	try {
 		await sendEvent("submit", "image-posted");
@@ -119,6 +119,12 @@ app.view("modal_view_1", async ({ ack, view, client, body }) => {
 		});
 	} catch (err) {
 		stump.error(err);
+		app.client.chat.postEphemeral({
+			user: body.user.id,
+			channel: channel[body.user.id],
+			text: `<An unexpected error occured: ${err.message}`,
+
+		});
 	} finally {
 		delete channel[body.user.id];
 	}
@@ -143,6 +149,7 @@ app.action("copy_code", async ({ body, ack, client, payload }) => {
 app.shortcut("delete_carbon", async ({ body, ack, client, payload }) => {
 	await ack();
 	const deleteRequester = payload.user.id;
+	console.log((payload as any).message.blocks[0].text)
 	const originalSender = (payload as any).message.blocks[0].text.text.split("<@")[1].split(">:")[0];
 	const ts = (payload as any).message.ts;
 	const channel = (payload as any).channel.id;
