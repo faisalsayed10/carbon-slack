@@ -159,5 +159,5 @@ app.shortcut("delete_carbon", async ({ body, ack, client, payload }) => {
 
 (async () => {
 	await app.start(PORT);
-	stump.info("⚡️ Bolt app is running!");
+	stump.info("⚡️ Bolt app is running! PORT= ", PORT);
 })();
